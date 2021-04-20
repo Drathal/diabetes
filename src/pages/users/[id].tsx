@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import { User } from '../../interfaces'
@@ -10,7 +11,7 @@ type Props = {
   errors?: string
 }
 
-const StaticPropsDetail = ({ item, errors }: Props) => {
+const StaticPropsDetail: FC<Props> = ({ item, errors }) => {
   if (errors) {
     return (
       <Layout title="Error | Next.js + TypeScript Example">
@@ -37,7 +38,7 @@ export default StaticPropsDetail
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
   const paths = sampleUserData.map((user) => ({
-    params: { id: user.id.toString() },
+    params: { id: user.id.toString() }
   }))
 
   // We'll pre-render only these paths at build time.
