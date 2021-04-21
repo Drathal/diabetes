@@ -6,5 +6,8 @@ module.exports = {
       use: 'raw-loader'
     })
     return config
+  },
+  future: {
+    webpack5: true
   }
 }
