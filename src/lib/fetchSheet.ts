@@ -1,20 +1,13 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet'
 
 import config from '../config'
+import { decodeDiabetesRows, DiabetesRow } from '../decoder/diabetesRow'
 
 export interface DiabetesData {
   docTitle: string
   sheet0Title: string
   sheet0RowCount: number
   rows: DiabetesRow[]
-}
-
-export interface DiabetesRow {
-  datum: string
-  action: string
-  value: string
-  unit: string
-  index: number
 }
 
 interface Props {
@@ -35,23 +28,12 @@ export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
 
   await doc.loadInfo()
   const sheet = doc.sheetsByTitle[SheetName]
-  const rawRows = await sheet.getRows()
-
-  // TODO: move to decoder file
-  const rows: DiabetesRow[] = rawRows.map((r) => {
-    return {
-      datum: r.datum,
-      action: r.action,
-      value: r.value,
-      unit: r.unit,
-      index: r._rowNumber
-    }
-  })
+  const rows = await sheet.getRows()
 
   return {
     docTitle: doc.title,
     sheet0Title: sheet.title,
     sheet0RowCount: sheet.rowCount,
-    rows
+    rows: decodeDiabetesRows(rows)
   }
 }

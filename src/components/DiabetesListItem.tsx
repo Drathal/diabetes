@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { DiabetesRow } from '../lib/fetchSheet'
+import { DiabetesRow } from '../decoder/diabetesRow'
 
 // TODO: use Pick
 type Props = {
