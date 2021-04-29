@@ -3,22 +3,20 @@ import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 
 import Layout from '../../components/Layout'
+import DiabetesList from '../../components/DiabetesList'
 import { fetchSheet } from '../../lib/fetchSheet'
+import { DiabetesData } from '../../lib/fetchSheet'
 
-type Props = {
-  items: any
-}
+type Props = DiabetesData
 
-const WithServerSideProps: FC<Props> = ({ items }: Props) => (
+const WithServerSideProps: FC<Props> = (props: Props) => (
   <Layout title="Diabetes Data">
     <h1>Diabetes Data</h1>
     <p>
       Example fetching data from inside <code>getServerSideProps()</code>.
     </p>
     <p>You are currently on: /diabetes</p>
-    <pre>
-      <code>{JSON.stringify(items)}</code>
-    </pre>
+    <DiabetesList {...props} />
     <p>
       <Link href="/">
         <a>Go home</a>
@@ -27,16 +25,9 @@ const WithServerSideProps: FC<Props> = ({ items }: Props) => (
   </Layout>
 )
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-  res
-}) => {
-  console.log('params res', params, res)
-
-  const data = await fetchSheet({ year: '2021', month: '04', day: '01' })
-
-  const items = data
-  return { props: { items } }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const props = await fetchSheet({ year: '2021', month: '04', day: '01' })
+  return { props }
 }
 
 export default WithServerSideProps

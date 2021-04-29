@@ -2,10 +2,19 @@ import { GoogleSpreadsheet } from 'google-spreadsheet'
 
 import config from '../config'
 
-interface SheetData {
+export interface DiabetesData {
   docTitle: string
   sheet0Title: string
   sheet0RowCount: number
+  rows: DiabetesRow[]
+}
+
+export interface DiabetesRow {
+  datum: string
+  action: string
+  value: string
+  unit: string
+  index: number
 }
 
 interface Props {
@@ -14,7 +23,7 @@ interface Props {
   day: string
 }
 
-export const fetchSheet = async (props: Props): Promise<SheetData> => {
+export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
   const doc = new GoogleSpreadsheet(config.sheet_id)
 
   await doc.useServiceAccountAuth({
@@ -26,10 +35,23 @@ export const fetchSheet = async (props: Props): Promise<SheetData> => {
 
   await doc.loadInfo()
   const sheet = doc.sheetsByTitle[SheetName]
+  const rawRows = await sheet.getRows()
+
+  // TODO: move to decoder file
+  const rows: DiabetesRow[] = rawRows.map((r) => {
+    return {
+      datum: r.datum,
+      action: r.action,
+      value: r.value,
+      unit: r.unit,
+      index: r._rowNumber
+    }
+  })
 
   return {
     docTitle: doc.title,
     sheet0Title: sheet.title,
-    sheet0RowCount: sheet.rowCount
+    sheet0RowCount: sheet.rowCount,
+    rows
   }
 }
