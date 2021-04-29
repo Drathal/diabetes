@@ -30,6 +30,10 @@ const Layout: FC<Props> = ({
         <Link href="/users">
           <a>Users List</a>
         </Link>{' '}
+        |{' '}
+        <Link href="/diabetes">
+          <a>Diabetes List</a>
+        </Link>{' '}
         | <a href="/api/users">Users API</a>
       </nav>
     </header>

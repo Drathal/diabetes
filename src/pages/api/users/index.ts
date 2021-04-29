@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleUserData } from '../../../utils/sample-data'
+import { User } from '../../../interfaces'
+
+export const sampleUserData: User[] = [{ id: 101, name: 'Tobi' }]
 
 const handler = (_req: NextApiRequest, res: NextApiResponse): void => {
   try {
