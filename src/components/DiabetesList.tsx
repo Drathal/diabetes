@@ -1,17 +1,17 @@
 import { FC } from 'react'
+import List from '@material-ui/core/List'
+
 import DiabetesListItem from './DiabetesListItem'
 import { DiabetesData } from '../lib/fetchSheet'
 
 type Props = DiabetesData
 
-const List: FC<Props> = ({ rows }) => (
-  <ul>
+const DiabetesList: FC<Props> = ({ rows }) => (
+  <List>
     {rows.map((item) => (
-      <li key={item.index}>
-        <DiabetesListItem data={item} />
-      </li>
+      <DiabetesListItem data={item} key={item.index} />
     ))}
-  </ul>
+  </List>
 )
 
-export default List
+export default DiabetesList

@@ -1,19 +1,26 @@
 import { FC } from 'react'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Divider from '@material-ui/core/Divider'
 
 import { DiabetesRow } from '../decoder/diabetesRow'
 
-// TODO: use Pick
 type Props = {
   data: DiabetesRow
 }
 
-const ListItem: FC<Props> = ({ data }: Props) => (
-  <>
-    <span>{data.datum}</span>
-    <span>{data.action}</span>
-    <span>{data.unit}</span>
-    <span>{data.value}</span>
-  </>
-)
+const DiabetesListItem: FC<Props> = ({ data }: Props) => {
+  return (
+    <>
+      <ListItem button>
+        <ListItemText primary={data.datum} />
+        <ListItemText primary={data.action} />
+        <ListItemText primary={data.unit} />
+        <ListItemText primary={data.value} />
+      </ListItem>
+      <Divider />
+    </>
+  )
+}
 
-export default ListItem
+export default DiabetesListItem
