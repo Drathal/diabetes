@@ -10,18 +10,17 @@ type Props = {
   data: DiabetesRow
 }
 
-const DiabetesListItem: FC<Props> = ({ data }: Props) => {
+const DiabetesListItemHeader: FC<Props> = ({ data }: Props) => {
+  console.log('header')
+
   return (
     <>
-      <ListItem button>
-        <ListItemText primary={format(parseISO(data.datum), 'H:mm')} />
-        <ListItemText primary={data.action} />
-        <ListItemText primary={data.unit} />
-        <ListItemText primary={data.value} />
+      <ListItem>
+        <ListItemText secondary={format(parseISO(data.datum), 'EEEE d.M.yy')} />
       </ListItem>
       <Divider />
     </>
   )
 }
 
-export default DiabetesListItem
+export default DiabetesListItemHeader

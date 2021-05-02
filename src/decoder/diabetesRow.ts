@@ -1,5 +1,5 @@
 import { GoogleSpreadsheetRow } from 'google-spreadsheet'
-
+import { parse, formatISO } from 'date-fns'
 export interface DiabetesRow {
   datum: string
   action: string
@@ -10,7 +10,7 @@ export interface DiabetesRow {
 
 type Decode = (row: GoogleSpreadsheetRow) => DiabetesRow
 const decode: Decode = (row) => ({
-  datum: row.datum,
+  datum: formatISO(parse(row.datum, 'M/d/yyyy H:m:s', new Date())),
   action: row.action,
   value: row.value,
   unit: row.unit,
