@@ -11,9 +11,9 @@ export interface DiabetesData {
 }
 
 interface Props {
-  year: string
-  month: string
-  day: string
+  year: number
+  month: number
+  day?: number
 }
 
 export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
@@ -24,16 +24,22 @@ export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
     private_key: config.private_key
   })
 
-  const SheetName = `${props.year}-${props.month}`
-
   await doc.loadInfo()
-  const sheet = doc.sheetsByTitle[SheetName]
-  const rows = await sheet.getRows()
+  const currentSheet =
+    doc.sheetsByTitle[`${props.year}-${('0' + props.month).slice(-2)}`]
+  const rows = await currentSheet.getRows()
+
+  // TODO: solve this more elegant this will break
+  const lastSheet =
+    doc.sheetsByTitle[`${props.year}-${('0' + (props.month - 1)).slice(-2)}`]
+  const lastRows = await lastSheet.getRows()
+
+  const allRows = [...lastRows, ...rows]
 
   return {
     docTitle: doc.title,
-    sheet0Title: sheet.title,
-    sheet0RowCount: sheet.rowCount,
-    rows: decodeDiabetesRows(rows).reverse()
+    sheet0Title: currentSheet.title,
+    sheet0RowCount: currentSheet.rowCount + lastSheet.rowCount,
+    rows: decodeDiabetesRows(allRows).reverse()
   }
 }

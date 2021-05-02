@@ -10,7 +10,10 @@ export interface DiabetesRow {
 
 type Decode = (row: GoogleSpreadsheetRow) => DiabetesRow
 const decode: Decode = (row) => ({
-  datum: formatISO(parse(row.datum, 'M/d/yyyy H:m:s', new Date())),
+  datum: formatISO(parse(row.datum, 'M/d/yyyy H:m:s', new Date()), {
+    format: 'extended',
+    representation: 'complete'
+  }),
   action: row.action,
   value: row.value,
   unit: row.unit,

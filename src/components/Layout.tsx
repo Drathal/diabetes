@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 import AppBar from '@material-ui/core/AppBar'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh'
+  },
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2)
   },
   footer: {
     position: 'fixed',
@@ -106,7 +111,9 @@ const Layout: FC<Props> = ({
           </Menu>
         </AppBar>
       </header>
-      {children}
+      <Container component="main" className={classes.main}>
+        {children}&nbsp;
+      </Container>
       <footer className={classes.footer}>
         <span>I&apos;m here to stay (Footer)</span>
       </footer>
