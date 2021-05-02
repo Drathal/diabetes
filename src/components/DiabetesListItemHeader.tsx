@@ -11,12 +11,10 @@ type Props = {
 }
 
 const DiabetesListItemHeader: FC<Props> = ({ data }: Props) => {
-  console.log('header')
-
   return (
     <>
       <ListItem>
-        <ListItemText secondary={format(parseISO(data.datum), 'EEEE d.M.yy')} />
+        <ListItemText secondary={format(parseISO(data.date), 'EEEE d.M.yy')} />
       </ListItem>
       <Divider />
     </>

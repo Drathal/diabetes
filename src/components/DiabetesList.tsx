@@ -27,7 +27,7 @@ const DiabetesList: FC<Props> = ({ rows }) => {
     <List className={classes.root}>
       {rows.map((item, i) => (
         <Fragment key={item.index}>
-          {showHeader(rows[i - 1]?.datum, item.datum) && (
+          {showHeader(rows[i - 1]?.date, item.date) && (
             <DiabetesListItemHeader data={item} />
           )}
           <DiabetesListItem data={item} />

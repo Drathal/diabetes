@@ -1,22 +1,45 @@
 import { GoogleSpreadsheetRow } from 'google-spreadsheet'
 import { parse, formatISO } from 'date-fns'
-export interface DiabetesRow {
-  datum: string
-  action: string
-  value: string
-  unit: string
-  index: number
+
+type Actions =
+  | 'measure'
+  | 'activity'
+  | 'insulin-short'
+  | 'insulin-long'
+  | 'food'
+
+type Units = 'mg/dl' | 'h' | 'units' | 'BU'
+
+type ActionUnitMap = {
+  [key in Actions]: Units
+}
+
+const actionUnitMap: ActionUnitMap = {
+  measure: 'mg/dl',
+  activity: 'h',
+  'insulin-short': 'units',
+  'insulin-long': 'units',
+  food: 'BU'
 }
 
 type Decode = (row: GoogleSpreadsheetRow) => DiabetesRow
+
+export interface DiabetesRow {
+  date: string
+  action: Actions
+  value: string
+  unit: Units
+  index: number
+}
+
 const decode: Decode = (row) => ({
-  datum: formatISO(parse(row.datum, 'M/d/yyyy H:m:s', new Date()), {
+  date: formatISO(parse(row.date, 'M/d/yyyy H:m:s', new Date()), {
     format: 'extended',
     representation: 'complete'
   }),
   action: row.action,
   value: row.value,
-  unit: row.unit,
+  unit: actionUnitMap[row.action as Actions],
   index: row._rowNumber
 })
 

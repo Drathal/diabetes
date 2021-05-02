@@ -4,9 +4,7 @@ import config from '../config'
 import { decodeDiabetesRows, DiabetesRow } from '../decoder/diabetesRow'
 
 export interface DiabetesData {
-  docTitle: string
-  sheet0Title: string
-  sheet0RowCount: number
+  rowCount: number
   rows: DiabetesRow[]
 }
 
@@ -37,9 +35,7 @@ export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
   const allRows = [...lastRows, ...rows]
 
   return {
-    docTitle: doc.title,
-    sheet0Title: currentSheet.title,
-    sheet0RowCount: currentSheet.rowCount + lastSheet.rowCount,
+    rowCount: currentSheet.rowCount + lastSheet.rowCount,
     rows: decodeDiabetesRows(allRows).reverse()
   }
 }
