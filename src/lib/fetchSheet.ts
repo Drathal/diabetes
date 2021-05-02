@@ -34,6 +34,6 @@ export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
     docTitle: doc.title,
     sheet0Title: sheet.title,
     sheet0RowCount: sheet.rowCount,
-    rows: decodeDiabetesRows(rows)
+    rows: decodeDiabetesRows(rows).reverse()
   }
 }
