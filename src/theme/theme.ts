@@ -32,22 +32,27 @@ const options = (): ThemeOptions => {
     typography: {
       fontFamily: 'Lato',
       h1: {
-        fontFamily: 'Roboto Slab',
-        fontWeight: 300,
+        fontFamily: 'Roboto',
+        fontWeight: 700,
         fontSize: '96px',
         lineHeight: '127px',
         letterSpacing: '-1.5px'
       },
       h2: {
-        fontFamily: 'Roboto Slab',
-        fontWeight: 300,
-        fontSize: '60px',
-        lineHeight: '79px',
+        fontFamily: 'Roboto',
+        fontWeight: 500,
+        fontSize: '48px',
+        lineHeight: '60px',
         letterSpacing: '-0.5px'
       },
-      h3: { fontFamily: 'Roboto Slab', fontSize: '48px', lineHeight: '63px' },
+      h3: {
+        fontFamily: 'Roboto',
+        fontWeight: 500,
+        fontSize: '48px',
+        lineHeight: '63px'
+      },
       h4: {
-        fontFamily: 'Roboto Slab',
+        fontFamily: 'Roboto',
         fontSize: '34px',
         lineHeight: '45px',
         letterSpacing: '0.25px'
@@ -123,7 +128,7 @@ const options = (): ThemeOptions => {
           a: {
             textDecoration: 'none',
             fontWeight: 900,
-            color: paletteColors.text
+            color: paletteColors.secondary
           }
         }
       }

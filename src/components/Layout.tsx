@@ -2,6 +2,8 @@ import { ReactNode, FC } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 
+import P from './elements/P'
+
 type Props = {
   children?: ReactNode
   title?: string
@@ -19,22 +21,24 @@ const Layout: FC<Props> = ({
     </Head>
     <header>
       <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/diabetes">
-          <a>Diabetes List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
+        <P>
+          <Link href="/">
+            <a>Home</a>
+          </Link>{' '}
+          |{' '}
+          <Link href="/about">
+            <a>About</a>
+          </Link>{' '}
+          |{' '}
+          <Link href="/users">
+            <a>Users List</a>
+          </Link>{' '}
+          |{' '}
+          <Link href="/diabetes">
+            <a>Diabetes List</a>
+          </Link>{' '}
+          | <a href="/api/users">Users API</a>
+        </P>
       </nav>
     </header>
     {children}
