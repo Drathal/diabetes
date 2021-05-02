@@ -14,10 +14,17 @@ type Props = {
 const useStyles = makeStyles(() =>
   createStyles({
     time: {
-      maxWidth: '5rem'
+      maxWidth: '5rem',
+      textAlign: 'right',
+      marginRight: '1rem'
     },
     action: {
       maxWidth: '8rem'
+    },
+    value: {
+      maxWidth: '6rem',
+      textAlign: 'right',
+      marginRight: '1rem'
     }
   })
 )
@@ -32,21 +39,8 @@ const DiabetesListItem: FC<Props> = ({ data }: Props) => {
           className={classes.time}
         />
         <ListItemText primary={data.action} className={classes.action} />
-        <ListItemText
-          primary={data.value}
-          primaryTypographyProps={{
-            style: {
-              display: 'inline'
-            }
-          }}
-          secondary={data.unit}
-          secondaryTypographyProps={{
-            style: {
-              display: 'inline',
-              marginLeft: '0.5rem'
-            }
-          }}
-        />
+        <ListItemText primary={data.value} className={classes.value} />
+        <ListItemText secondary={data.unit} />
       </ListItem>
       <Divider />
     </>
