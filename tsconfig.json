@@ -1,5 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/elements/*": ["src/components/elements/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/decoder/*": ["src/decoder/*"],
+      "@/interfaces/*": ["src/interfaces/*"],
+      "@/theme/*": ["src/theme/*"],
+      "@/*": ["src/*"]
+    },
     "allowJs": true,
     "alwaysStrict": true,
     "esModuleInterop": true,

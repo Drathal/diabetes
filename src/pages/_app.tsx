@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import type { AppProps } from 'next/app'
 
-import useLoadingIndicator from '../hooks/useLoadingIndicator'
-import { ThemeProvider } from '../theme'
+import useLoadingIndicator from '@/hooks/useLoadingIndicator'
+import { ThemeProvider } from '@/theme'
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [loading] = useLoadingIndicator()

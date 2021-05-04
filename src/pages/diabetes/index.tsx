@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import { GetServerSideProps } from 'next'
 
-import Layout from '../../components/Layout'
-import DiabetesList from '../../components/DiabetesList'
-import { fetchSheet } from '../../lib/fetchSheet'
-import { DiabetesData } from '../../lib/fetchSheet'
+import Layout from '@/components/Layout'
+import DiabetesList from '@/components/DiabetesList'
+import { fetchSheet } from '@/lib/fetchSheet'
+import { DiabetesData } from '@/lib/fetchSheet'
 
 type Props = DiabetesData
 

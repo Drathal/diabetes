@@ -3,9 +3,9 @@ import { isSameDay, parseISO } from 'date-fns'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 
-import DiabetesListItemHeader from './DiabetesListItemHeader'
-import DiabetesListItem from './DiabetesListItem'
-import { DiabetesData } from '../lib/fetchSheet'
+import DiabetesListItemHeader from '@/components/DiabetesListItemHeader'
+import DiabetesListItem from '@/components/DiabetesListItem'
+import { DiabetesData } from '@/lib/fetchSheet'
 
 type Props = DiabetesData
 

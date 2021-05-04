@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { User } from '../interfaces'
+import { User } from '@/interfaces'
 
 type Props = {
   item: User

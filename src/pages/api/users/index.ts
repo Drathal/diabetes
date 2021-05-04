@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { User } from '../../../interfaces'
+
+import { User } from '@/interfaces'
 
 export const sampleUserData: User[] = [{ id: 101, name: 'Tobi' }]
 

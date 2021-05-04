@@ -1,6 +1,6 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet'
 
-import config from '../config'
+import config from '@/config'
 import { decodeDiabetesRows, DiabetesRow } from '../decoder/diabetesRow'
 
 export interface DiabetesData {

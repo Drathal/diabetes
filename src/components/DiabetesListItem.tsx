@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
-import { DiabetesRow } from '../decoder/diabetesRow'
+import { DiabetesRow } from '@/decoder/diabetesRow'
 
 type Props = {
   data: DiabetesRow
