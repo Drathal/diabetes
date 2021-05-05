@@ -1,5 +1,5 @@
 import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz'
-import { parse, parseISO, isSameDay as isSameDayFNS, isValid } from 'date-fns'
+import { parse, parseISO, isSameDay as isSameDayFNS } from 'date-fns'
 
 const timeZone = 'Europe/Berlin'
 
@@ -20,8 +20,6 @@ export const dateStringFormat = (
 export const isSameDay = (date1: string, date2: string): boolean =>
   !!date1 &&
   !!date2 &&
-  isValid(date1) &&
-  isValid(date2) &&
   isSameDayFNS(dateString2Date(date1), dateString2Date(date2))
 
 export const isNotSameDay = (date1: string, date2: string): boolean =>

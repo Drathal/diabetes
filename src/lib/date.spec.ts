@@ -1,4 +1,9 @@
-import { sheetDate2dateString, dateString2Date, dateStringFormat } from './date'
+import {
+  sheetDate2dateString,
+  dateString2Date,
+  dateStringFormat,
+  isSameDay
+} from './date'
 
 describe('lib/date', () => {
   test('sheetDate2dateString()', () => {
@@ -24,6 +29,16 @@ describe('lib/date', () => {
     const expected = '21:30'
 
     const result = dateStringFormat(inputTime, 'H:mm')
+
+    expect(result).toEqual(expected)
+  })
+
+  test('isSameDay()', () => {
+    const inputTime1 = '2021-05-01T19:30:00.000Z'
+    const inputTime2 = '2021-05-01T19:30:00.000Z'
+    const expected = true
+
+    const result = isSameDay(inputTime1, inputTime2)
 
     expect(result).toEqual(expected)
   })
