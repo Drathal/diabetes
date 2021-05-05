@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import { format, parseISO } from 'date-fns'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
+import { dateStringFormat } from '@/lib/date'
 import { DiabetesRow } from '@/decoder/diabetesRow'
 
 type Props = {
@@ -35,7 +35,7 @@ const DiabetesListItem: FC<Props> = ({ data }: Props) => {
     <>
       <ListItem button>
         <ListItemText
-          primary={format(parseISO(data.date), 'H:mm')}
+          primary={dateStringFormat(data.date, 'H:mm')}
           className={classes.time}
         />
         <ListItemText primary={data.action} className={classes.action} />

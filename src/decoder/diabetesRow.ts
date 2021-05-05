@@ -1,5 +1,6 @@
 import { GoogleSpreadsheetRow } from 'google-spreadsheet'
-import { parse, formatISO } from 'date-fns'
+
+import { sheetDate2dateString } from '@/lib/date'
 
 type Actions =
   | 'measure'
@@ -33,10 +34,7 @@ export interface DiabetesRow {
 }
 
 const decode: Decode = (row) => ({
-  date: formatISO(parse(row.date, 'M/d/yyyy H:m:s', new Date()), {
-    format: 'extended',
-    representation: 'complete'
-  }),
+  date: sheetDate2dateString(row.date),
   action: row.action,
   value: row.value,
   unit: actionUnitMap[row.action as Actions],

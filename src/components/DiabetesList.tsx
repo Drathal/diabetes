@@ -1,8 +1,8 @@
 import { FC, Fragment } from 'react'
-import { isSameDay, parseISO } from 'date-fns'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 
+import { isNotSameDay } from '@/lib/date'
 import DiabetesListItemHeader from '@/components/DiabetesListItemHeader'
 import DiabetesListItem from '@/components/DiabetesListItem'
 import { DiabetesData } from '@/lib/fetchSheet'
@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const showHeader = (lastDate: string, date: string) =>
-  !lastDate || !isSameDay(parseISO(lastDate), parseISO(date))
-
 const DiabetesList: FC<Props> = ({ rows }) => {
   const classes = useStyles()
 
@@ -27,7 +24,7 @@ const DiabetesList: FC<Props> = ({ rows }) => {
     <List className={classes.root}>
       {rows.map((item, i) => (
         <Fragment key={item.index}>
-          {showHeader(rows[i - 1]?.date, item.date) && (
+          {isNotSameDay(rows[i - 1]?.date, item.date) && (
             <DiabetesListItemHeader data={item} />
           )}
           <DiabetesListItem data={item} />

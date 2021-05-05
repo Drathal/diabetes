@@ -35,3 +35,6 @@ yarn-error.log*
 
 google_secrets.json
 .env
+
+# quokka files
+q.*.*
