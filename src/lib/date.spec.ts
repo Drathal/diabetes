@@ -42,4 +42,14 @@ describe('lib/date', () => {
 
     expect(result).toEqual(expected)
   })
+
+  test('isNotSameDay()', () => {
+    const inputTime1 = '2021-05-01T19:30:00.000Z'
+    const inputTime2 = '2021-05-02T19:30:00.000Z'
+    const expected = false
+
+    const result = isSameDay(inputTime1, inputTime2)
+
+    expect(result).toEqual(expected)
+  })
 })
