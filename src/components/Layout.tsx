@@ -94,16 +94,6 @@ const Layout: FC<Props> = ({
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link href="/about">
-                <a>About</a>
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link href="/users">
-                <a>Users List</a>
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
               <Link href="/diabetes">
                 <a>Diabetes List</a>
               </Link>
