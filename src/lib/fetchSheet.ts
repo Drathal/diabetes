@@ -8,13 +8,22 @@ export interface DiabetesData {
   rows: DiabetesRow[]
 }
 
-interface Props {
-  year: number
-  month: number
-  day?: number
+export const getCurrentSheetName = (): string => {
+  const year = new Date().getFullYear()
+  const month = new Date().getMonth() + 1
+  return `${year}-${('0' + month).slice(-2)}`
 }
 
-export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
+export const getLastSheetName = (): string => {
+  const year = new Date().getFullYear()
+  const month = new Date().getMonth() + 1
+  return `${year}-${('0' + month).slice(-2)}`
+}
+
+export const fetchSheet = async (
+  curSheetName?: string,
+  lastSheetName?: string
+): Promise<DiabetesData> => {
   const doc = new GoogleSpreadsheet(config.sheet_id)
 
   await doc.useServiceAccountAuth({
@@ -23,15 +32,11 @@ export const fetchSheet = async (props: Props): Promise<DiabetesData> => {
   })
 
   await doc.loadInfo()
-  const currentSheet =
-    doc.sheetsByTitle[`${props.year}-${('0' + props.month).slice(-2)}`]
+
+  const currentSheet = doc.sheetsByTitle[curSheetName || getCurrentSheetName()]
   const rows = await currentSheet.getRows()
-
-  // TODO: solve this more elegant this will break
-  const lastSheet =
-    doc.sheetsByTitle[`${props.year}-${('0' + (props.month - 1)).slice(-2)}`]
+  const lastSheet = doc.sheetsByTitle[lastSheetName || getLastSheetName()]
   const lastRows = await lastSheet.getRows()
-
   const allRows = [...lastRows, ...rows]
 
   return {

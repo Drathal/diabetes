@@ -14,7 +14,8 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$'
   ],
   moduleNameMapper: {
-    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy'
+    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '@/(.*)$': '<rootDir>/src/$1'
   },
   testMatch: ['**/*.spec.(ts|tsx)'],
   setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.ts'],

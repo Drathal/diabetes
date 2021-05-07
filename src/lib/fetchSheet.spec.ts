@@ -1,18 +1,31 @@
-// import { fetchSheet } from './fetchSheet'
+import { GoogleSpreadsheet } from 'google-spreadsheet'
+import { fetchSheet } from './fetchSheet'
 
-// we need to mock that later
+jest.mock('google-spreadsheet')
+
 describe('fetchSheet()', () => {
-  test('it can fetch the configured Sheet Data', async () => {
-    /*
-    const data = await fetchSheet({ year: '2021', month: '04', day: '01' })
+  test('it can fetch Sheet Data', async () => {
+    const data = await fetchSheet('2021-05', '2021-04')
+
+    expect(GoogleSpreadsheet).toBeDefined()
     expect(data).toEqual({
-      docTitle: 'Diabetes',
-      sheet0RowCount: 1000,
-      sheet0Title: '2021-04'
+      rowCount: 2,
+      rows: [
+        {
+          date: '2021-05-05T08:00:00.000Z',
+          action: 'measure',
+          value: '200',
+          index: 1,
+          unit: 'mg/dl'
+        },
+        {
+          date: '2021-05-05T08:00:00.000Z',
+          action: 'measure',
+          value: '200',
+          index: 1,
+          unit: 'mg/dl'
+        }
+      ]
     })
-    */
-    expect(1).toEqual(1)
   })
 })
-
-export default {}

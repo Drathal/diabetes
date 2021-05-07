@@ -31,5 +31,5 @@
     "target": "esnext"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "__mocks__/google-spreadsheet.ts"]
 }

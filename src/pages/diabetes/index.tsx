@@ -15,9 +15,7 @@ const WithServerSideProps: FC<Props> = (props) => (
 )
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const year = new Date().getFullYear()
-  const month = new Date().getMonth() + 1
-  const props = await fetchSheet({ year, month })
+  const props = await fetchSheet()
   return { props }
 }
 

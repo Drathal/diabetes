@@ -21,5 +21,5 @@ export const validateConfig = (config: Config): boolean => {
     return false
   }
 
-  throw new Error(errors.toString())
+  throw new Error(`${errors.toString()}`)
 }

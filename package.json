@@ -7,7 +7,7 @@
     "start": "next start",
     "type-check": "tsc",
     "lint": "npm run type-check && eslint --ext .ts --ext .tsx './'",
-    "test": "jest"
+    "test": "jest --env=.env"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
