@@ -2,7 +2,9 @@ import {
   sheetDate2dateString,
   dateString2Date,
   dateStringFormat,
-  isSameDay
+  isSameDay,
+  getYearMonthString,
+  getPreviousMonth
 } from './date'
 
 describe('lib/date', () => {
@@ -49,6 +51,24 @@ describe('lib/date', () => {
     const expected = false
 
     const result = isSameDay(inputTime1, inputTime2)
+
+    expect(result).toEqual(expected)
+  })
+
+  test('getYearMonth(date)', () => {
+    const date = new Date('2021-04-01')
+    const expected = '2021-04'
+
+    const result = getYearMonthString(date)
+
+    expect(result).toEqual(expected)
+  })
+
+  test('getPreviousMonth(date)', () => {
+    const date = new Date('2021-04-01')
+    const expected = '2021-03-01T01:00:00.000Z'
+
+    const result = getPreviousMonth(date).toISOString()
 
     expect(result).toEqual(expected)
   })

@@ -1,5 +1,5 @@
 import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz'
-import { parse, parseISO, isSameDay as isSameDayFNS } from 'date-fns'
+import { sub, parse, parseISO, isSameDay as isSameDayFNS } from 'date-fns'
 
 const timeZone = 'Europe/Berlin'
 
@@ -24,3 +24,16 @@ export const isSameDay = (date1: string, date2: string): boolean =>
 
 export const isNotSameDay = (date1: string, date2: string): boolean =>
   !isSameDay(date1, date2)
+
+export const getYearMonthString = (date: Date = new Date()): string => {
+  const dateISO = zonedTimeToUtc(date, timeZone).toISOString()
+  const yearMonth = dateStringFormat(dateISO, 'yyyy-MM')
+
+  return yearMonth
+}
+
+export const getPreviousMonth = (date: Date = new Date()): Date => {
+  return sub(date, {
+    months: 1
+  })
+}

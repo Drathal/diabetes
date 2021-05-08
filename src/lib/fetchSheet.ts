@@ -1,28 +1,44 @@
-import { GoogleSpreadsheet } from 'google-spreadsheet'
+import {
+  GoogleSpreadsheet,
+  GoogleSpreadsheetWorksheet
+} from 'google-spreadsheet'
 
 import config from '@/config'
-import { decodeDiabetesRows, DiabetesRow } from '../decoder/diabetesRow'
+import { decodeDiabetesRows, DiabetesRow } from '@/decoder/diabetesRow'
+import { getYearMonthString, getPreviousMonth } from '@/lib/date'
 
 export interface DiabetesData {
   rowCount: number
   rows: DiabetesRow[]
 }
 
-export const getCurrentSheetName = (): string => {
-  const year = new Date().getFullYear()
-  const month = new Date().getMonth() + 1
-  return `${year}-${('0' + month).slice(-2)}`
+const getOrCreateSheet = async (
+  doc: GoogleSpreadsheet,
+  sheetName: string
+): Promise<GoogleSpreadsheetWorksheet> => {
+  let sheet = doc.sheetsByTitle[sheetName]
+
+  if (!sheet) {
+    sheet = await doc.addSheet({
+      title: sheetName,
+      headerValues: ['date', 'action', 'value'] // TODO: read heaxder valiues from a model
+    })
+  }
+
+  return sheet
 }
 
-export const getLastSheetName = (): string => {
-  const year = new Date().getFullYear()
-  const month = new Date().getMonth() + 1
-  return `${year}-${('0' + month).slice(-2)}`
-}
-
+/**
+ * Reads the sheet from the current and the past months.
+ * It will create that sheets if they dont exist
+ *
+ * @param currentSheetName Google Sheet Tab Name
+ * @param lastSheetName Google Sheet Tab Name
+ * @returns Object with rows and cowcount
+ */
 export const fetchSheet = async (
-  curSheetName?: string,
-  lastSheetName?: string
+  currentSheetName: string = getYearMonthString(),
+  lastSheetName: string = getYearMonthString(getPreviousMonth())
 ): Promise<DiabetesData> => {
   const doc = new GoogleSpreadsheet(config.sheet_id)
 
@@ -33,10 +49,12 @@ export const fetchSheet = async (
 
   await doc.loadInfo()
 
-  const currentSheet = doc.sheetsByTitle[curSheetName || getCurrentSheetName()]
+  const currentSheet = await getOrCreateSheet(doc, currentSheetName)
   const rows = await currentSheet.getRows()
-  const lastSheet = doc.sheetsByTitle[lastSheetName || getLastSheetName()]
+
+  const lastSheet = await getOrCreateSheet(doc, lastSheetName)
   const lastRows = await lastSheet.getRows()
+
   const allRows = [...lastRows, ...rows]
 
   return {
