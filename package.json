@@ -10,12 +10,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@headlessui/react": "^1.1.1",
+    "@heroicons/react": "^1.0.1",
+    "autoprefixer": "^10.2.5",
     "date-fns": "^2.21.1",
     "date-fns-tz": "^1.1.4",
     "google-spreadsheet": "^3.1.15",
     "next": "latest",
+    "postcss": "^8.2.14",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",

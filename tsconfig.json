@@ -10,7 +10,7 @@
       "@/decoder/*": ["src/decoder/*"],
       "@/encoder/*": ["src/encoder/*"],
       "@/interfaces/*": ["src/interfaces/*"],
-      "@/theme/*": ["src/theme/*"],
+      "@/styles/*": ["src/styles/*"],
       "@/*": ["src/*"]
     },
     "allowJs": true,
@@ -32,5 +32,5 @@
     "target": "esnext"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "__mocks__/google-spreadsheet.ts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "__mocks__/google-spreadsheet.ts", "src/components/elements/AppMenutsx"]
 }

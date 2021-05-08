@@ -9,8 +9,8 @@ type Props = {
 
 const DiabetesListItemHeader: FC<Props> = ({ data }: Props) => {
   return (
-    <li>
-      <div>{dateStringFormat(data.date, 'EEEE d.M.yy')}</div>
+    <li className="border-1 border rounded shadow p-2">
+      {dateStringFormat(data.date, 'EEEE d.M.yy')}
     </li>
   )
 }

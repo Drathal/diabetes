@@ -1,6 +1,14 @@
 import { ReactNode, FC } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
+
+import AppMenu from '@/elements/AppMenu'
+import Menu from '@/elements/Menu'
+import MenuItem from '@/elements/MenuItem'
+
+const navigation = [
+  { name: 'Home', href: '/', current: true },
+  { name: 'Tracker', href: '/diabetes', current: false }
+]
 
 type Props = {
   children?: ReactNode
@@ -12,37 +20,28 @@ const Layout: FC<Props> = ({
   title = 'This is the default title'
 }) => {
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <header>
-        <div>
-          <div>
-            <h1>Diabetes Tracker</h1>
-          </div>
 
-          <div>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/diabetes">
-              <a>Diabetes List</a>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <AppMenu title={'Diabetes Tracker'} navigation={navigation}>
+        <Menu
+          srText="Open user menu"
+          imageUrl={
+            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+          }
+        >
+          <MenuItem url={'#'}>Your Profile</MenuItem>
+          <MenuItem url={'#'}>Settings</MenuItem>
+          <MenuItem url={'#'}>Sign out</MenuItem>
+        </Menu>
+      </AppMenu>
 
-      <div>{children}&nbsp;</div>
-
-      <footer>
-        <span>I&apos;m here to stay (Footer)</span>
-      </footer>
-    </div>
+      <div className="pt-24">{children}&nbsp;</div>
+    </>
   )
 }
 
