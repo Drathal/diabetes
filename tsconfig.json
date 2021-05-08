@@ -8,6 +8,7 @@
       "@/lib/*": ["src/lib/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/decoder/*": ["src/decoder/*"],
+      "@/encoder/*": ["src/encoder/*"],
       "@/interfaces/*": ["src/interfaces/*"],
       "@/theme/*": ["src/theme/*"],
       "@/*": ["src/*"]

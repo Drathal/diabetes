@@ -5,6 +5,7 @@ import {
 
 import config from '@/config'
 import { decodeDiabetesRows, DiabetesRow } from '@/decoder/diabetesRow'
+import { sheetHeaderValues } from '@/encoder/googleSheet'
 import { getYearMonthString, getPreviousMonth } from '@/lib/date'
 
 export interface DiabetesData {
@@ -21,7 +22,7 @@ const getOrCreateSheet = async (
   if (!sheet) {
     sheet = await doc.addSheet({
       title: sheetName,
-      headerValues: ['date', 'action', 'value'] // TODO: read heaxder valiues from a model
+      headerValues: sheetHeaderValues
     })
   }
 
