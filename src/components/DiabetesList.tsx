@@ -1,6 +1,4 @@
 import { FC, Fragment } from 'react'
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
 
 import { isNotSameDay } from '@/lib/date'
 import DiabetesListItemHeader from '@/components/DiabetesListItemHeader'
@@ -9,19 +7,9 @@ import { DiabetesData } from '@/lib/fetchSheet'
 
 type Props = DiabetesData
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.background.paper
-    }
-  })
-)
-
 const DiabetesList: FC<Props> = ({ rows }) => {
-  const classes = useStyles()
-
   return (
-    <List className={classes.root}>
+    <ul>
       {rows.map((item, i) => (
         <Fragment key={item.index}>
           {isNotSameDay(rows[i - 1]?.date, item.date) && (
@@ -30,7 +18,7 @@ const DiabetesList: FC<Props> = ({ rows }) => {
           <DiabetesListItem data={item} />
         </Fragment>
       ))}
-    </List>
+    </ul>
   )
 }
 
