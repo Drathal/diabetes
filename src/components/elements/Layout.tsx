@@ -1,4 +1,5 @@
 import { ReactNode, FC } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import AppMenu from '@/elements/AppMenu'
@@ -6,12 +7,17 @@ import Menu from '@/elements/Menu'
 import MenuItem from '@/elements/MenuItem'
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Tracker', href: '/diabetes', current: false }
+  { name: 'Home', href: '/', current: false },
+  { name: 'Diabetes Tracker', href: '/diabetes', current: false }
 ]
+type Navigation = typeof navigation[0]
+
+const setCurrentNav = (currentNav: string) => (entry: Navigation) => {
+  const current = entry.href === currentNav ? true : false
+  return { ...entry, current }
+}
 
 type Props = {
-  children?: ReactNode
   title?: string
 }
 
@@ -19,6 +25,9 @@ const Layout: FC<Props> = ({
   children,
   title = 'This is the default title'
 }) => {
+  const router = useRouter()
+  const navWithCurrent = navigation.map(setCurrentNav(router.pathname))
+
   return (
     <>
       <Head>
@@ -27,7 +36,7 @@ const Layout: FC<Props> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <AppMenu title={'Diabetes Tracker'} navigation={navigation}>
+      <AppMenu title={'Diabetes Tracker'} navigation={navWithCurrent}>
         <Menu
           srText="Open user menu"
           imageUrl={

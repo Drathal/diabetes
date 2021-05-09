@@ -3,7 +3,6 @@ import { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Hydrate } from 'react-query/hydration'
 
-// import useLoadingIndicator from '@/hooks/useLoadingIndicator'
 import '@/styles/globals.css'
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
@@ -11,7 +10,6 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient()
   }
-  // const [loading] = useLoadingIndicator()
 
   return (
     <QueryClientProvider client={queryClientRef.current}>
