@@ -7,13 +7,21 @@ type Props = {
   data: DiabetesRow
 }
 
+const classes = {
+  wrapper: `flex items-center w-full p-2 border-b border-gray-200`,
+  time: `flex-initial w-16 mr-2 prose-xl text-right`,
+  action: `flex-1  prose mr-2 text-gray-600`,
+  value: `flex-initial text-right prose-xl w-32 mr-2`,
+  unit: `flex-1 prose-sm color text-gray-500`
+}
+
 const DiabetesListItem: FC<Props> = ({ data }: Props) => {
   return (
-    <li className="border-b border-gray-200 flex w-full p-2">
-      <div className="flex-1">{dateStringFormat(data.date, 'H:mm')}</div>
-      <div className="flex-1">{data.action}</div>
-      <div className="flex-1">{data.value}</div>
-      <div className="flex-1">{data.unit}</div>
+    <li className={classes.wrapper}>
+      <div className={classes.time}>{dateStringFormat(data.date, 'H:mm')}</div>
+      <div className={classes.action}>{data.action}</div>
+      <div className={classes.value}>{data.value}</div>
+      <div className={classes.unit}>{data.unit}</div>
     </li>
   )
 }

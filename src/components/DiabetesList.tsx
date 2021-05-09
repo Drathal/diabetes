@@ -9,7 +9,7 @@ type Props = DiabetesData
 
 const DiabetesList: FC<Props> = ({ rows }) => {
   return (
-    <ul className="pl-8 pr-8">
+    <ul className="p-4">
       {rows.map((item, i) => (
         <Fragment key={`l${i}`}>
           {isNotSameDay(rows[i - 1]?.date, item.date) && (
