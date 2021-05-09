@@ -15,7 +15,9 @@ const Diabetes: FC = () => {
 
   return (
     <Layout title="Diabetes Tracker">
-      {isLoading && <div>fetching Diabetes Data from Google Sheets</div>}
+      {isLoading && (
+        <div className="m-auto mt-4 loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
+      )}
       {error && <div>error while Fetching Data</div>}
       <DiabetesList {...sheetData} />
     </Layout>

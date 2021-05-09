@@ -9,7 +9,7 @@ type Props = {
 
 const DiabetesListItemHeader: FC<Props> = ({ data }: Props) => {
   return (
-    <li className="border-1 border rounded shadow p-2">
+    <li className="sticky top-0 border-1 border rounded p-2 bg-white">
       {dateStringFormat(data.date, 'EEEE d.M.yy')}
     </li>
   )
