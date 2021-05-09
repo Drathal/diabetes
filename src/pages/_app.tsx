@@ -1,13 +1,25 @@
-import { FC } from 'react'
-import type { AppProps } from 'next/app'
+import { FC, useRef } from 'react'
+import { AppProps } from 'next/app'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { Hydrate } from 'react-query/hydration'
 
-import useLoadingIndicator from '@/hooks/useLoadingIndicator'
+// import useLoadingIndicator from '@/hooks/useLoadingIndicator'
 import '@/styles/globals.css'
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  const [loading] = useLoadingIndicator()
+  const queryClientRef = useRef<undefined | QueryClient>()
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient()
+  }
+  // const [loading] = useLoadingIndicator()
 
-  return <>{loading ? <h1>Loading...</h1> : <Component {...pageProps} />}</>
+  return (
+    <QueryClientProvider client={queryClientRef.current}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Component {...pageProps} />
+      </Hydrate>
+    </QueryClientProvider>
+  )
 }
 
 export default App

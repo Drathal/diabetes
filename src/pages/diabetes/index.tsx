@@ -1,22 +1,25 @@
 import { FC } from 'react'
-import { GetServerSideProps } from 'next'
+import { useQuery } from 'react-query'
 
 import Layout from '@/components/Layout'
 import DiabetesList from '@/components/DiabetesList'
-import { fetchSheet } from '@/lib/fetchSheet'
 import { DiabetesData } from '@/lib/fetchSheet'
 
-type Props = DiabetesData
+const Diabetes: FC = () => {
+  const { isLoading, error, data } = useQuery<DiabetesData, Error>(
+    'sheetData',
+    () => fetch('/api/month').then((res) => res.json())
+  )
 
-const WithServerSideProps: FC<Props> = (props) => (
-  <Layout title="Diabetes Data">
-    <DiabetesList {...props} />
-  </Layout>
-)
+  const sheetData = data || { rowCount: 0, rows: [] }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const props = await fetchSheet()
-  return { props }
+  return (
+    <Layout title="Diabetes Data">
+      {isLoading && <div>isloading</div>}
+      {error && <div>error</div>}
+      <DiabetesList {...sheetData} />
+    </Layout>
+  )
 }
 
-export default WithServerSideProps
+export default Diabetes
