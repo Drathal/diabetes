@@ -13,9 +13,9 @@ type Props = {
 
 const classes = {
   wrapper: `flex border-b ripple place-items-center h-12`,
-  time: `flex justify-end place-items-center w-24 mr-2 prose-xl text-right `,
-  action: `flex-1  prose mr-2 text-gray-600  `,
-  value: `flex-initial text-right prose-xl w-32 mr-2`,
+  time: `flex justify-end place-items-center w-24 mr-2 prose-xl text-right`,
+  action: `flex-1  prose mr-2 text-gray-600`,
+  value: `flex-initial text-right prose-xl w-24 mr-2`,
   unit: `flex-1 prose-sm color text-gray-500`
 }
 
