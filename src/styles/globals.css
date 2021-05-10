@@ -7,18 +7,29 @@
   height: 100%;
 }
 
+.ripple-indigo,
 .ripple {
   background-position: center;
   transition: background .4s;
 }
 .ripple:hover {
-  background: #fff radial-gradient(circle, transparent .1%, #ffffffff .1%) center/150000%;
+  background: #fff radial-gradient(circle, transparent .1%, #ffffff .1%) center/150000%;
 }
 .ripple:active {
   background-color: rgba(0,0,0,0.15);
   background-size: 100%;
   transition: background 0s;
 }
+.ripple-indigo:hover {
+  background: rgba(99, 102, 241, 255) radial-gradient(circle, transparent 1%, rgba(99, 102, 241, 255) 1%) center/15000%;
+}
+.ripple-indigo:active {
+  background-color: rgba(0,0,0,0.15);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+/* rgba(99, 102, 241, 255) */
 
 .loader {
   border-top-color: #3498db;

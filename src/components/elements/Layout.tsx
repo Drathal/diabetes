@@ -53,7 +53,7 @@ const Layout: FC<Props> = ({
             </Menu>
           )}
         </AppMenu>
-        <div className="main bg-gray-100 flex-grow overflow-y-scroll">
+        <div className="main flex bg-gray-100 flex-grow overflow-y-scroll">
           {children}
         </div>
       </div>
