@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 
 import Layout from '@/components/elements/Layout'
 import DiabetesList from '@/components/DiabetesList'
-import { DiabetesData } from '@/lib/fetchSheet'
+import { DiabetesData } from '@/utils/googleSheet/fetchSheet'
 
 const Diabetes: FC = () => {
   const { isLoading, error, data } = useQuery<DiabetesData, Error>(

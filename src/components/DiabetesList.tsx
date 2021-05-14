@@ -1,9 +1,9 @@
 import { FC, Fragment } from 'react'
 
-import { isNotSameDay } from '@/lib/date'
+import { isNotSameDay } from '@/utils/date'
 import DiabetesListItemHeader from '@/components/DiabetesListItemHeader'
 import DiabetesListItem from '@/components/DiabetesListItem'
-import { DiabetesData } from '@/lib/fetchSheet'
+import { DiabetesData } from '@/utils/googleSheet/fetchSheet'
 import PlusIcon from '@/components/elements/icons/Plus'
 
 type Props = DiabetesData
@@ -11,7 +11,7 @@ type Props = DiabetesData
 const classes = {
   wrapper: `flex flex-col flex-grow`,
   scrollContainer: `flex flex-col flex-grow`,
-  list: `px-4 pb-8`,
+  list: `px-4 pb-8 `,
   footer: `text-center`,
   button: `absolute px-3 py-4 -ml-4 text-white bg-indigo-500 rounded-full bottom-2 ripple-indigo`
 }

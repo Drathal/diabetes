@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Menu } from '@headlessui/react'
 import Link from 'next/link'
 
-import { classNames } from '@/lib/classNames'
+import { classNames } from '@/utils/classNames'
 
 interface Props {
   url: string

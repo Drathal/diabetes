@@ -9,13 +9,22 @@ const getRows = (): Promise<[typeof mockRowData]> => {
   return Promise.resolve([mockRowData])
 }
 
-type Sheet = { getRows: typeof getRows; rowCount: number }
+const addRow = (addData: unknown): Promise<typeof addData> => {
+  return Promise.resolve(addData)
+}
+
+type Sheet = {
+  getRows: typeof getRows
+  addRow: typeof addRow
+  rowCount: number
+}
+
 type SheetsByTitle = {
   [P: string]: Sheet
 }
 export class GoogleSpreadsheet {
   public sheetsByTitle: SheetsByTitle = {
-    ['2021-05']: { getRows, rowCount: 1 }
+    ['2021-05']: { getRows, addRow, rowCount: 1 }
   }
 
   async useServiceAccountAuth(): Promise<void> {

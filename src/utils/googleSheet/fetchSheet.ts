@@ -1,32 +1,14 @@
-import {
-  GoogleSpreadsheet,
-  GoogleSpreadsheetWorksheet
-} from 'google-spreadsheet'
+import { GoogleSpreadsheet } from 'google-spreadsheet'
 
 import config from '@/config'
 import { decodeDiabetesRows, DiabetesRow } from '@/decoder/diabetesRow'
-import { sheetHeaderValues } from '@/encoder/googleSheet'
-import { getYearMonthString, getPreviousMonth } from '@/lib/date'
+
+import { getYearMonthString, getPreviousMonth } from '@/utils/date'
+import { getOrCreateSheet } from './getOrCreateSheet'
 
 export interface DiabetesData {
   rowCount: number
   rows: DiabetesRow[]
-}
-
-const getOrCreateSheet = async (
-  doc: GoogleSpreadsheet,
-  sheetName: string
-): Promise<GoogleSpreadsheetWorksheet> => {
-  let sheet = doc.sheetsByTitle[sheetName]
-
-  if (!sheet) {
-    sheet = await doc.addSheet({
-      title: sheetName,
-      headerValues: sheetHeaderValues
-    })
-  }
-
-  return sheet
 }
 
 /**

@@ -3,7 +3,7 @@ import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 
-import { classNames } from '@/lib/classNames'
+import { classNames } from '@/utils/classNames'
 
 interface Navigation {
   name: string

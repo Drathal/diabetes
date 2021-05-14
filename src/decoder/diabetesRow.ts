@@ -1,6 +1,6 @@
 import { GoogleSpreadsheetRow } from 'google-spreadsheet'
 
-import { sheetDate2dateString } from '@/lib/date'
+import { sheetDate2dateString } from '@/utils/date'
 
 type Actions =
   | 'measure'

@@ -5,7 +5,7 @@ const timeZone = 'Europe/Berlin'
 
 export const sheetDate2dateString = (sheetDate: string): string =>
   zonedTimeToUtc(
-    parse(sheetDate, 'M/d/yyyy H:m:s', new Date()),
+    parse(sheetDate, 'M/d/yyyy H:mm:s', new Date()),
     timeZone
   ).toISOString()
 
@@ -37,3 +37,9 @@ export const getPreviousMonth = (date: Date = new Date()): Date => {
     months: 1
   })
 }
+
+export const date2SheetDate = (
+  date: Date = new Date(),
+  formatString = 'M/d/yyyy H:mm:s'
+): string =>
+  dateStringFormat(zonedTimeToUtc(date, timeZone).toISOString(), formatString)

@@ -1,4 +1,4 @@
-import { validateConfig, Config } from './lib/validateConfig'
+import { validateConfig, Config } from './utils/validateConfig'
 
 const config: Config = {
   sheet_id: process.env.GOOGLE_SHEET_ID || '',

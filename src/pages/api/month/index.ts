@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { fetchSheet, DiabetesData } from '@/lib/fetchSheet'
+import { fetchSheet, DiabetesData } from '@/utils/googleSheet/fetchSheet'
 
 export default async function handler(
   req: NextApiRequest,

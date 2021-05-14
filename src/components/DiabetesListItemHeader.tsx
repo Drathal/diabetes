@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { dateStringFormat } from '@/lib/date'
+import { dateStringFormat } from '@/utils/date'
 import { DiabetesRow } from '@/decoder/diabetesRow'
 
 type Props = {

@@ -38,7 +38,7 @@ const Layout: FC<Props> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <div className="flex flex-grow flex-col h-full w-100">
+      <div className="flex flex-col flex-grow h-full w-100">
         <AppMenu title={'Diabetes Tracker'} navigation={navWithCurrent}>
           {isMenuActive && (
             <Menu
@@ -53,7 +53,7 @@ const Layout: FC<Props> = ({
             </Menu>
           )}
         </AppMenu>
-        <div className="main flex bg-gray-100 flex-grow overflow-y-scroll">
+        <div className="flex flex-grow overflow-y-scroll bg-gray-100 main">
           {children}
         </div>
       </div>
