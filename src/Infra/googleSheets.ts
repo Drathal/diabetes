@@ -3,16 +3,18 @@ import {
   GoogleSpreadsheetWorksheet
 } from 'google-spreadsheet'
 
-import config from '@/config'
-
 let doc: GoogleSpreadsheet
 
-export const connect = async (): Promise<GoogleSpreadsheet> => {
-  doc = new GoogleSpreadsheet(config.sheet_id)
+export const connect = async (
+  client_email: string,
+  private_key: string,
+  sheet_id: string
+): Promise<GoogleSpreadsheet> => {
+  doc = new GoogleSpreadsheet(sheet_id)
 
   await doc.useServiceAccountAuth({
-    client_email: config.client_email,
-    private_key: config.private_key
+    client_email,
+    private_key
   })
 
   await doc.loadInfo()
