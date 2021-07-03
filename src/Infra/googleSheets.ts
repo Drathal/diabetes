@@ -52,3 +52,30 @@ export const getOrCreateSheet = async (
 
   return newSheet
 }
+
+export const addSheetRow = async (
+  sheet: GoogleSpreadsheetWorksheet,
+  values: string[]
+): Promise<void> => {
+  await sheet.addRow(values)
+}
+
+export const deleteSheetRow = async (
+  sheet: GoogleSpreadsheetWorksheet,
+  row: number
+): Promise<void> => {
+  const rows = await sheet.getRows()
+  await rows[row].delete()
+}
+
+export const updateSheetRow = async (
+  sheet: GoogleSpreadsheetWorksheet,
+  row: number,
+  values: Record<string, unknown>
+): Promise<void> => {
+  const rows = await sheet.getRows()
+  Object.entries(values).forEach(([key, value]) => {
+    rows[row][key] = value
+  })
+  await rows[row].save()
+}

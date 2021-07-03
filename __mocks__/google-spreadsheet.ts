@@ -2,7 +2,13 @@ const mockRowData = {
   date: '5/5/2021 10:00:00',
   action: 'measure',
   value: '200',
-  _rowNumber: 1
+  _rowNumber: 1,
+  delete: async () => {
+    return Promise.resolve()
+  },
+  save: async () => {
+    return Promise.resolve()
+  }
 }
 
 const getRows = (): Promise<[typeof mockRowData]> => {
@@ -23,6 +29,10 @@ type SheetsByTitle = {
   [P: string]: Sheet
 }
 export class GoogleSpreadsheet {
+  public addRowValues: Record<string, unknown> = {}
+
+  constructor(public sheet_id: string) {}
+
   public sheetsByTitle: SheetsByTitle = {
     ['2021-05']: { getRows, addRow, rowCount: 1 }
   }
